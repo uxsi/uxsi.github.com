@@ -1,0 +1,33 @@
+@import "fn";
+
+@pageWidth:80%;
+@sideColWidth:250px;
+@extColWidth:250px;
+
+.page(@pageWidth:100%){.center(@pageWidth);}
+.wrapper(@wrapperWidth:100%){.center(@wrapperWidth);}
+.page,.head,.body,.foot{.oh;.z;}
+
+.wrapper{.wrapper(960px);}
+
+// .header>(.header_box>.inner.wrped>组件)+(.header_box>.inner>组件)
+.head_box{
+	.inner{
+		&.wrped{.wrapper(960px);}
+	}
+}
+
+// .body>.wrapper>.container>组件
+.container{
+	.oh;.z;
+	
+}
+
+// .body>.wrapper>.container_box>.col_side+.col_ext+.col_main>组件
+.col_main{.oh;.z;}
+.col_side{.l;.w(@sideColWidth);}
+.col_ext{.r;.w(@extColWidth);}
+
+
+
+

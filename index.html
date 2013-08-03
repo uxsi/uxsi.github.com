@@ -3,13 +3,58 @@ layout: default
 title: hi,uxsi
 ---
 
+<style>
+.icon{display:none;position:fixed;top:50%;left:50%;width:100px;height:100px;margin-left:-50px;margin-top:-50px;}
+.post_content{display:none;}
+</style>
+
+<i class="icon" id="loading">loading...</i>
 <h1>{{ page.title }}</h1>
 
 <p>posts:</p>
 
-<ul>
+<ul class="post_list">
 	{% for post in site.posts %}
-		<li>{{ post.date | date_to_string }} <a href="{{ post.url }}">{{ post.title }}</a></li>
+		<li class="post_item">
+			{{ post.date | date_to_string }} <a href="javascript:void(0);" post="{{ post.url }}" id="{{ forloop.index0 }}">{{ post.title }}</a>
+			<div class="post_content">
+			</div>
+		</li>
 	{% endfor %}
+
+
+
 </ul>
+
+
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+	(function(){
+
+		var lastItem;
+		$(".post_item").children("a").click(function(){
+			var postLink = $(this);
+
+			$("#loading").show();
+			var postURL = $(this).attr("post");
+			$.ajax({
+			   type: "GET",
+			   url: postURL,
+			   success: function(html){
+			   		if (!!lastItem)
+		   				lastItem.nextAll(".post_content").html('');
+
+			   		lastItem = postLink;
+			   		postLink.nextAll(".post_content").append(html);
+			   		$("#loading").hide();
+			   		$(".post_content").show();
+			   }
+			});
+		});
+
+	})();
+</script>
+
+
 

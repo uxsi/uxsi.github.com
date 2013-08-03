@@ -1,0 +1,8 @@
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+body{line-height:1.6;font-family:"Helvetica Neue",Helvetica,"Microsoft YaHei","微软雅黑","黑体",Arial,sans-serif;color:#222222;}
+input,textarea,select{color:#666666;}
+input,textarea{outline:0;}
+body,h1,h2,h3,h4,p,ul,ol,dl,dd,fieldset{margin:0;}
+fieldset,legend{padding:0;}
+ul,ol{padding-left:0;list-style-type:none;}
+a img,fieldset{border:0;}
