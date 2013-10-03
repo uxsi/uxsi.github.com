@@ -1,4 +1,4 @@
 uxsi.github.com
 ===============
 
-[my site](uxsi.github.io)
+[my site](http://uxsi.github.io)
