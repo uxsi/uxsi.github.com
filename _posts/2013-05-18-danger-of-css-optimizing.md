@@ -1,20 +1,10 @@
----
-layout: default
----
-
 <style type="text/css">
-	.demo_area{}
-	.demo_area p{letter-spacing:12px;}
-	.demo_box{display:inline-block;width:100px;height:100px;background-color:#F1F1F1;text-align:center;letter-spacing:normal;}
-	.demo_box.red{background-color:#F7C6C7;}
-	.demo_box.blue{background-color:#C7DEF8;}
 </style>
 <div class="demo_area">
 	<p><span class="demo_box">default box</span><span class="demo_box red">red box</span><span class="demo_box blue">blue box</span></p>
 </div>
 
 针对上面效果的解决方案，一般是对demo_box进行抽象，然后派生出red和blue等其它box，再结合代码效率什么的，得出的所谓最有效率的方案：
-
 
 	.demo_box{... background-color:#F1F1F1; ...}
 	.red{bcakground-color:#F7C6C7;}
