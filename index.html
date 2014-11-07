@@ -1,56 +1,40 @@
----
-layout: default
-title: hi,imxushengni
----
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<style>
+		
+	</style>
+</head>
+<body>
+<dl>
+	<dt>x</dt>
+	<dd>代表未知后面的</dd>
+	<dd>星星之火后面的</dd>
+	<dd>那个冒烟的牛屎炉</dd>
 
-<style>
-.icon{display:none;position:fixed;top:50%;left:50%;width:100px;height:100px;margin-left:-50px;margin-top:-50px;}
-.post_content{display:none;}
-</style>
+	<dt>x</dt>
+	<dd>代表无知后面的</dd>
+	<dd>蓝天白云后面的</dd>
+	<dd>那只断翅的蜻蜓</dd>
 
-<i class="icon" id="loading">loading...</i>
-<h1>{{ page.title }}</h1>
+	<dt>x</dt>
+	<dd>是交叉路口后面的</dd>
+	<dd>此路不通后面的</dd>
+	<dd>那个院子外的篱笆架</dd>
 
-<p>posts:</p>
+	<dt>x</dt>
+	<dd>是痛</dd>
+	<dd>老师给的是红色的</dd>
+	<dd>家长给的是青色的</dd>
 
-<ul class="post_list">
-	{% for post in site.posts %}
-		<li class="post_item">
-			{{ post.date | date_to_string }} <a href="javascript:void(0);" post="{{ post.url }}" id="{{ forloop.index0 }}">{{ post.title }}</a>
-			<div class="post_content">
-			</div>
-		</li>
-	{% endfor %}
-</ul>
-
-
-<script src="../js/jquery-1.8.3.min.js"></script>
-<script>
-	(function(){
-
-		var lastItem;
-		$(".post_item").children("a").click(function(){
-			var postLink = $(this);
-
-			$("#loading").show();
-			var postURL = $(this).attr("post");
-			$.ajax({
-			   type: "GET",
-			   url: postURL,
-			   success: function(html){
-			   		if (!!lastItem)
-		   				lastItem.nextAll(".post_content").html('');
-
-			   		lastItem = postLink;
-			   		postLink.nextAll(".post_content").append(html);
-			   		$("#loading").hide();
-			   		$(".post_content").show();
-			   }
-			});
-		});
-
-	})();
-</script>
+	<dt>x</dt>
+	<dd>x是一场圣戟</dd>
+	<dd>x是矛</dd>
+	<dd>x是盾</dd>
+	<dd>x是我和你的是非论</dd>
+</dl>
+</body>
 
 
-
+</html>
