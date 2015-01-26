@@ -42,6 +42,18 @@
 	<dd>x是盾</dd>
 	<dd>x是我和你的是非论</dd>
 </dl>
+<script type="text/javascript">
+WeixinJSBridge.invoke("shareTimeline", {
+    img_url:"http://uxsi.github.io/img/favicon.ico",
+    img_width: "240",
+    img_height: "240",
+    link: "http://...",
+    desc: "这是描述，但目前被隐藏了", 
+    title: "这是标题"
+}, function (res) {
+    alert(res.err_msg);
+});
+</script>
 </body>
 
 
