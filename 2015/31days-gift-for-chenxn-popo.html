@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>送给晓妮婆婆的31天纪念日礼物</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maxinum-scale=1">
+
+    <style type="text/css">
+        body{
+            margin:0;
+            line-height:1.6;
+            font-size:15px;
+        }
+        .common_box{
+            position: absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            right: 0;
+            background-size: cover;
+            -webkit-background-size: cover;
+            background-repeat:no-repeat;
+        }
+        .initial_box{
+            background-image:url("xn.jpg");
+        }
+        .messenge_box{
+            background-image:url("2.jpg");
+
+        }
+        .messenge{
+            position: absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            right: 0;
+            background:rgba(255,255,255,.7);
+            color:#434343;
+            padding:1.5em 2em;
+        }
+        .messenge p{
+            margin-bottom:1em;
+        }
+        #meet{
+            position: absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            right: 0;
+            opacity: 1;
+        }
+        .initial_words{
+            padding:1.5em;
+            position: absolute;
+
+        }
+        
+
+
+
+        .initial_box{
+            -webkit-transition: all 0.5s ease-in;
+            transition: all 0.5s ease-in;
+        }
+        .messenge_box{
+            opacity:0;
+            -webkit-transition: all 0.5s ease-in 0.6s;
+            transition: all 0.5s ease-in 0.6s;
+        }
+        .nx .initial_box{
+            opacity:0;
+        }
+        .nx .messenge_box{
+            opacity:1;
+        }
+    </style>
+</head>
+<body id="gift">
+
+    <div class="messenge_box common_box">
+        <div class="messenge">
+            <p>
+               嘻嘻，不知道你记不记得，<br>
+               今天是我们相识的第31天。
+            </p>
+            <p>
+                不知不觉12分之一年就过去了，也许是缘分让我们相遇，
+                5000年轮回换来一次回眸，相识不易，值得彼此用心珍惜。
+            </p>
+            <p>
+                我也在学习中，学习如何让喜欢的她生活得更加开心，更加幸福...
+            </p>
+            <p>
+                哈哈，没有啦，就是想要给你一个小礼物而已，记得吃完早餐再去上班，路上小心。
+            </p>
+        </div>
+    </div>
+    <div class="initial_box common_box" id="helloChenxn">
+        <canvas id="meet"></canvas>
+        <div class="initial_words">
+            礼盒即将打开，<br>
+            闭上眼想着你希望的礼物，<br>
+            然后用心在屏幕画上一颗美美的爱心...
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" charset="utf-8">
+        var canvas = document.getElementById("meet"),ctx = canvas.getContext("2d");
+        var x1,y1,a=30,timeout,totimes = 100,jiange = 30;
+        canvas.width = document.getElementById("helloChenxn").clientWidth;
+        canvas.height = document.getElementById("helloChenxn").clientHeight;
+        ctx.fillStyle = 'rgba(255,255,255,.734)';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        tapClip();
+        
+        function tapClip(){
+            var hastouch = "ontouchstart" in window?true:false,
+                tapstart = hastouch?"touchstart":"mousedown",
+                tapmove = hastouch?"touchmove":"mousemove",
+                tapend = hastouch?"touchend":"mouseup";
+                
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+            ctx.lineWidth = a*2;
+            ctx.globalCompositeOperation = "destination-out";
+            
+            canvas.addEventListener(tapstart , function(e){
+                clearTimeout(timeout)
+                e.preventDefault();
+                
+                x1 = hastouch?e.targetTouches[0].pageX:e.clientX-canvas.offsetLeft;
+                y1 = hastouch?e.targetTouches[0].pageY:e.clientY-canvas.offsetTop;
+                
+                ctx.save();
+                ctx.beginPath()
+                ctx.arc(x1,y1,1,0,2*Math.PI);
+                ctx.fill();
+                ctx.restore();
+                
+                canvas.addEventListener(tapmove , tapmoveHandler);
+                canvas.addEventListener(tapend , function(){
+                    canvas.removeEventListener(tapmove , tapmoveHandler);
+                    
+                    timeout = setTimeout(function(){
+                        var imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+                        var dd = 0;
+                        for(var x=0;x<imgData.width;x+=jiange){
+                            for(var y=0;y<imgData.height;y+=jiange){
+                                var i = (y*imgData.width + x)*4;
+                                if(imgData.data[i+3] >0){
+                                    dd++
+                                }
+                            }
+                        }
+                        if(dd/(imgData.width*imgData.height/(jiange*jiange))<0.8){
+                            document.getElementById("gift").className = "nx";
+                        }
+                    },totimes)
+                });
+                function tapmoveHandler(e){
+                    clearTimeout(timeout)
+                    e.preventDefault()
+                    x2 = hastouch?e.targetTouches[0].pageX:e.clientX-canvas.offsetLeft;
+                    y2 = hastouch?e.targetTouches[0].pageY:e.clientY-canvas.offsetTop;
+                    
+                    ctx.save();
+                    ctx.moveTo(x1,y1);
+                    ctx.lineTo(x2,y2);
+                    ctx.stroke();
+                    ctx.restore()
+                    
+                    x1 = x2;
+                    y1 = y2;
+                }
+            })
+        }
+    </script>
+</body>
+</html>
